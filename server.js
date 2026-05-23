@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 // CORS
 app.use(cors({
   origin: process.env.NODE_ENV === 'development' 
-    ? 'http://localhost:3000' 
+    ? 'http://localhost:8080/' 
     : 'https://yourdomain.com',
   credentials: true
 }));
