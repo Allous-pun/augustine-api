@@ -31,17 +31,18 @@ app.use('/api', limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS
+// CORS - Allow all origins for development (will work with any frontend port)
 app.use(cors({
-  origin: process.env.NODE_ENV === 'development' 
-    ? 'http://localhost:8080/' 
-    : 'https://yourdomain.com',
-  credentials: true
+  origin: true, // Allows any origin
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/services', serviceRoutes);
+
 // Home route
 app.get('/', (req, res) => {
   res.json({ 
